@@ -33,7 +33,50 @@ Example Responses:
 Add the required logic below to complete the API.
 */
 
+// API-GET  /assistant/greet
+
+// task1
+app.get("/assistant/greet",(request,response)=>{
+  console.log(request.query.name)
+  let name=request.query.name
+  let day=new Date().getDay()
+  if (day==1){
+    //monday
+    let obj={
+      welcomeMessage: `Hello, ${name}! Welcome to our assistant app!`,
+      dayMessage: "Happy Monday! Start your week with energy!"
+    }
+    return response.send (obj)
+  }
+  else if (day==5){
+    //wednesday
+    let obj={
+      welcomeMessage: `Hello, ${name}! Welcome to our assistant app!`,
+      dayMessage: "It's Friday! The weekend is near!"
+    }
+    return response.send (obj)
+  }
+  else{
+    //other days
+    let obj={
+      welcomeMessage: `Hello, ${name}! Welcome to our assistant app!`,
+      dayMessage: "Have a wonderful day!"
+    }
+    return response.send (obj)
+  }
+
+  // return response.send({name: "squad", messages: "hello world", today:day});    //json data stringinfied
+})
+
+
+app.get('/', function(request, response){
+  return response.send('<h1>Hello World</h1>')      //html page, normal html page
+})
+
+
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Virtual Assistant API is running on http://localhost:${PORT}`);
 });
+
+
